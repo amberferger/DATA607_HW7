@@ -1,0 +1,91 @@
+---
+title: "DATA 607 - Working with XML and JSON in R"
+author: "Amber Ferger"
+date: "10/13/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructions
+
+Pick three of your favorite books on one of your favorite subjects. At least one of the books should have more than one author. For each book, include the title, authors, and two or three other attributes that you find interesting.
+
+Take the information that you’ve selected about these three books, and separately create three files which store the book’s information in HTML (using an html table), XML, and JSON formats (e.g. “books.html”, “books.xml”, and “books.json”). To help you better understand the different file structures, I’d prefer that you create each of these files “by hand” unless you’re already very comfortable with the file formats.
+Write R code, using your packages of choice, to load the information from each of the three sources into separate R data frames. Are the three data frames identical? 
+
+Your deliverable is the three source files and the R code. If you can, package your assignment solution up into an .Rmd file and publish to rpubs.com. [This will also require finding a way to make your three text files accessible from the web].
+
+### Table Layout
+I chose to use the following columns for my datasets:
+
+* TITLE
+* AUTHOR1
+* AUTHOR2
+* YEAR
+* SUBJECT
+* AMAZON RATING
+
+
+## Libraries
+
+```{r}
+library(XML)
+library(RJSONIO)
+library(rvest)
+library(RCurl)
+```
+
+
+## Loading in the Files
+
+### HTML File 
+**I will use the rvest package to pull in the html file and save it as a data frame.**
+```{r}
+
+htmlURL <- "https://raw.githubusercontent.com/amberferger/DATA607_HW7/master/books.html"
+
+readHtml <- read_html(htmlURL)
+tables <- html_nodes(readHtml,"table")
+tables_ls <- html_table(tables, fill = TRUE)
+booksHTML.df <- as.data.frame(tables_ls)
+
+booksHTML.df
+
+```
+
+
+### XML Files
+**Once again, we will use the XML library to load in the XML file and convert it to a data frame. Since the default data type is a string, we will convert the YEAR and AMAZONRATING columns to numeric.**
+
+```{r}
+xmlData <- getURL('https://raw.githubusercontent.com/amberferger/DATA607_HW7/master/books.xml', ssl.verifyhost=FALSE, ssl.verifypeer=FALSE)
+
+booksXML <- xmlParse(file = xmlData[1])
+
+root <- xmlRoot(booksXML)
+booksXML.df <- xmlToDataFrame(root)
+
+booksXML.df$year <- as.numeric(as.character(booksXML.df$year))
+booksXML.df$amazon_rating <- as.numeric(as.character(booksXML.df$amazon_rating))
+
+booksXML.df
+
+```
+
+### JSON File
+**We will use the RJSONIO library to pull in our JSON file and convert it to a dataframe.**
+
+```{r}
+
+jsonURL <- "https://raw.githubusercontent.com/amberferger/DATA607_HW7/master/books.json"
+
+booksJSON <- fromJSON(jsonURL)
+booksJSON.df <- do.call("rbind", lapply(booksJSON, as.data.frame))
+
+booksJSON.df
+
+```
+
