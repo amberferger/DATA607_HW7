@@ -1,0 +1,26 @@
+{"books":[
+	{
+		"book_id": "1",
+		"title":"Freakonomics: A Rogue Economist Explores the Hidden Side of Everything", 
+		"authors": ["Steven D. Levitt", "Stephen J. Dubner"], 
+		"year":2009, 
+		"subject":"Economics", 
+		"amazon_rating":4.4
+	},
+	{
+		"book_id": "2",
+		"title":"Blink: The Power of Thinking Without Thinking", 
+		"authors":"Malcolm Gladwell", 
+		"year":2007, 
+		"subject":"Leadership", 
+		"amazon_rating":4.3
+	},
+	{
+		"book_id": "3",
+		"title":"The Black Swan: The Impact of the Highly Improbable", 
+		"authors": "Nassim Nicholas Taleb", 
+		"year":2010, 
+		"subject":"Leadership", 
+		"amazon_rating":4
+	}]
+}

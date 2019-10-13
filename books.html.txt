@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1> My favorite books </h1>
+	<table style = "width:100%">
+  		<tr>
+			<th>Book_Id</th>
+    			<th>Title</th>
+    			<th>Authors</th> 
+    			<th>Year</th>
+    			<th>Subject</th>
+    			<th>Amazon_Rating</th>
+  		</tr>
+  		<tr>
+			<td>1</td>
+    			<td>Freakonomics: A Rogue Economist Explores the Hidden Side of Everything</td>
+    			<td>Steven D. Levitt, Stephen J. Dubner</td>
+    			<td>2009</td>
+    			<td>Economics</td>
+    			<td>4.4</td>
+  		</tr>
+  		<tr>
+			<td>2</td>
+    			<td>Blink: The Power of Thinking Without Thinking</td>
+    			<td>Malcolm Gladwell</td>
+    			<td>2007</td>
+    			<td>Leadership</td>
+    			<td>4.3</td>
+  		</tr>
+  		<tr>
+			<td>3</td>
+    			<td>The Black Swan: The Impact of the Highly Improbable</td>
+    			<td>Nassim Nicholas Taleb</td>
+    			<td>2010</td>
+    			<td>Leadership</td>
+    			<td>4</td>
+  		</tr>
+	</table>
+
+</body>
+</html>
